@@ -1,6 +1,10 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
 import { it, expect } from '@jest/globals';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { Router } from 'react-router';
 
 import { Provider } from 'react-redux';
@@ -9,19 +13,16 @@ import { createMemoryHistory } from 'history';
 import { Application } from './../../src/client/Application';
 import { ExampleApi, CartApi } from '../../src/client/api';
 
-jest.mock('../../src/client/api');
-
-
 it('Рендерится главный экран приложения', () => {
   const history = createMemoryHistory({
     initialEntries: ['/'],
     initialIndex: 0
   });
   const basename = '/hw/store';
-  const mockExampleApi = new ExampleApi(basename);
-  const mockCartApi = new CartApi();
+  const api = new ExampleApi(basename);
+  const cart = new CartApi();
 
-  const store = initStore(mockExampleApi, mockCartApi);
+  const store = initStore(api, cart);
 
   const application = (
     <Router history={history}>
@@ -31,7 +32,10 @@ it('Рендерится главный экран приложения', () => 
     </Router>
   );
   
-  render(application);
-  screen.logTestingPlaygroundURL();
+  const { getByRole } = render(application);
+  const rootLink = getByRole('link', { name: /Example store/i });
+  const expected = 'Example store';
+
+  expect(rootLink.textContent).toBe(expected);
 })
 

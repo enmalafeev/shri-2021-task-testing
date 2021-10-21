@@ -7,10 +7,12 @@
         "target": "es5",
         "allowJs": true,
         "jsx": "react",
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        // "types": ["node", "jest", "@testing-library/jest-dom"],
     },
     "include": [
-        "src"
+        "src",
+        "./jest-setup.ts"
     ],
     "ts-node": {
         "compilerOptions": {

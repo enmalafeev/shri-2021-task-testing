@@ -36,10 +36,10 @@ export const Application: FC = () => {
                 </button>
                 <div className={bem('Menu', [navbarClass])}>
                     <div className="navbar-nav">
-                        <NavLink className="nav-link" activeClassName="active" to="/catalog" onClick={hide}>Catalog</NavLink>
-                        <NavLink className="nav-link" activeClassName="active" to="/delivery" onClick={hide}>Delivery</NavLink>
-                        <NavLink className="nav-link" activeClassName="active" to="/contacts" onClick={hide}>Contacts</NavLink>
-                        <NavLink className="nav-link" activeClassName="active" to="/cart" onClick={hide}>{cartLabel}</NavLink>
+                        <NavLink data-testid="link-catalog" className="nav-link" activeClassName="active" to="/catalog" onClick={hide}>Catalog</NavLink>
+                        <NavLink data-testid="link-delivery" className="nav-link" activeClassName="active" to="/delivery" onClick={hide}>Delivery</NavLink>
+                        <NavLink data-testid="link-contacts" className="nav-link" activeClassName="active" to="/contacts" onClick={hide}>Contacts</NavLink>
+                        <NavLink data-testid="link-cart" className="nav-link" activeClassName="active" to="/cart" onClick={hide}>{cartLabel}</NavLink>
                     </div>
                 </div>
             </div>
