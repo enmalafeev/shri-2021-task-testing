@@ -7,7 +7,8 @@ import { initStore } from '../../src/client/store';
 import { createMemoryHistory } from 'history';
 import { Application } from '../../src/client/Application';
 import { ExampleApi, CartApi } from '../../src/client/api';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
+import renderer from 'react-test-renderer';
  
 describe('Проверка работы роутера', () => {
   it('Работает переход на страницу Catalog', () => {
@@ -58,8 +59,10 @@ describe('Проверка работы роутера', () => {
     const { getByRole } = render(application);
     userEvent.click(getByRole('link', { name: /delivery/i }));
     const header = getByRole('heading', { name: /delivery/i });
+    const deliverySnapshot = renderer.create(application).toJSON();
 
     expect(header).toBeInTheDocument();
+    expect(deliverySnapshot).toMatchSnapshot();
   });
 
   it('Работает переход на страницу Contacts', () => {
@@ -84,8 +87,10 @@ describe('Проверка работы роутера', () => {
     const { getByRole } = render(application);
     userEvent.click(getByRole('link', { name: /contacts/i }));
     const header = getByRole('heading', { name: /contacts/i });
+    const contactsSnapshot = renderer.create(application).toJSON();
 
     expect(header).toBeInTheDocument();
+    expect(contactsSnapshot).toMatchSnapshot();
   });
 
   it('Работает переход на страницу Cart', () => {

@@ -8,6 +8,7 @@ import { initStore } from '../../src/client/store';
 import { createMemoryHistory } from 'history';
 import { Application } from '../../src/client/Application';
 import { ExampleApi, CartApi } from '../../src/client/api';
+import renderer from 'react-test-renderer';
 
 describe('Проверка главного экрана приложения', () => {
   it('Рендерится главный экран приложения', () => {
@@ -30,10 +31,12 @@ describe('Проверка главного экрана приложения', 
     );
     
     const { getByRole } = render(application);
+    const mainSnapshot = renderer.create(application).toJSON();
     const rootLink = getByRole('link', { name: /Example store/i });
     const expected = 'Example store';
   
     expect(rootLink.textContent).toBe(expected);
+    expect(mainSnapshot).toMatchSnapshot();
   });
 
   it('Рендерится navbar c ссылками', () => {
