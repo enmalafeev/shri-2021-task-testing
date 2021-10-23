@@ -62,7 +62,19 @@ describe('Проверка карточки товара', () => {
 
     userEvent.click(getByRole('button', { name: /add to cart/i }));
     waitFor(() => expect(getByText('Item in cart')).toBeInTheDocument());
+  });
+
+  it('При повторном добавлении товара в корзину увеличивается его количество', () => {
+    const product = (
+      <Provider store={store}>
+        <BrowserRouter>
+          <Product />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    const { getByRole, getByText } = render(product);
+
     
-    screen.logTestingPlaygroundURL();
-  })
+  });
 });
