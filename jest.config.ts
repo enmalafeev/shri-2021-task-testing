@@ -3,7 +3,7 @@ const { defaults } = require("jest-config");
 
 const config: Config.InitialOptions = {
   verbose: true,
-  setupFilesAfterEnv: ["jest-setup.ts"],
+  setupFilesAfterEnv: ["./jest-setup.ts"],
   preset: "ts-jest",
   moduleFileExtensions: [
     ...defaults.moduleFileExtensions,

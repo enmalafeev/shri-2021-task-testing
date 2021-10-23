@@ -1,16 +1,11 @@
-/**
- * @jest-environment jsdom
- */
-
 import React from 'react';
-import { it, expect } from '@jest/globals';
 import { render } from '@testing-library/react';
 import { Router } from 'react-router';
 
 import { Provider } from 'react-redux';
 import { initStore } from '../../src/client/store';
 import { createMemoryHistory } from 'history';
-import { Application } from './../../src/client/Application';
+import { Application } from '../../src/client/Application';
 import { ExampleApi, CartApi } from '../../src/client/api';
 import userEvent from '@testing-library/user-event'
  
