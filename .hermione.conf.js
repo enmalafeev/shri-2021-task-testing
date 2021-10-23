@@ -13,9 +13,9 @@ module.exports = {
     width: 575,
     height: 1000
   },
-  plugins: {
-    'html-reporter/hermione': {
-      path: 'hermione-html-reporter'
-    }
-  }
+  // plugins: {
+  //   'html-reporter/hermione': {
+  //     path: 'hermione-html-reporter'
+  //   }
+  // }
 }
