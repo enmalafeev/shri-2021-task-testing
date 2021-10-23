@@ -50,7 +50,7 @@ describe('Проверка работы роутера', () => {
     const application = (
       <Router history={history}>
         <Provider store={store}>
-            <Application />
+          <Application />
         </Provider>
       </Router>
     );
