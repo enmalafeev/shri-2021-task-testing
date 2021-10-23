@@ -12,7 +12,7 @@ import { ExampleApi, CartApi } from '../../src/client/api';
 describe('Проверка главного экрана приложения', () => {
   it('Рендерится главный экран приложения', () => {
     const history = createMemoryHistory({
-      initialEntries: ['/'],
+      initialEntries: ['/hw/store'],
       initialIndex: 0
     });
     const basename = '/hw/store';

@@ -12,7 +12,7 @@ import userEvent from '@testing-library/user-event'
 describe('Проверка работы роутера', () => {
   it('Работает переход на страницу Catalog', () => {
     const history = createMemoryHistory({
-      initialEntries: ['/catalog'],
+      initialEntries: ['/hw/store/catalog'],
       initialIndex: 0
     });
     const basename = '/hw/store';
@@ -37,7 +37,7 @@ describe('Проверка работы роутера', () => {
   })
   it('Работает переход на страницу Delivery', () => {
     const history = createMemoryHistory({
-      initialEntries: ['/delivery'],
+      initialEntries: ['/hw/store/delivery'],
       initialIndex: 0
     });
     const basename = '/hw/store';
@@ -62,7 +62,7 @@ describe('Проверка работы роутера', () => {
   })
   it('Работает переход на страницу Contacts', () => {
     const history = createMemoryHistory({
-      initialEntries: ['/contacts'],
+      initialEntries: ['/hw/store/contacts'],
       initialIndex: 0
     });
     const basename = '/hw/store';
@@ -87,7 +87,7 @@ describe('Проверка работы роутера', () => {
   })
   it('Работает переход на страницу Cart', () => {
     const history = createMemoryHistory({
-      initialEntries: ['/cart'],
+      initialEntries: ['/hw/store/cart'],
       initialIndex: 0
     });
     const basename = '/hw/store';

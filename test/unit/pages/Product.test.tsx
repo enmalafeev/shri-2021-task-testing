@@ -32,9 +32,7 @@ describe('Проверка карточки товара', () => {
         </BrowserRouter>
       </Provider>
     );
-
-    screen.logTestingPlaygroundURL();
-
+    
     expect(screen.getByRole('heading', { name: /notebook/i })).toBeInTheDocument();
     expect(screen.getByText(/some description about the product/i)).toBeInTheDocument();
     expect(screen.getByText(/color/i)).toBeInTheDocument();
