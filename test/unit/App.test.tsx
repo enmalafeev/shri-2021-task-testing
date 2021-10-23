@@ -55,15 +55,14 @@ describe('Проверка главного экрана приложения', 
       </Router>
     );
     
-    const { getByTestId, getByRole } = render(application);
-    const navbar = getByTestId('navbar');
+    const { getByRole } = render(application);
+   
     const rootLink = getByRole('link', { name: /Example store/i });
     const catalogLink = getByRole('link', { name: /catalog/i });
     const deliveryLink = getByRole('link', { name: /delivery/i });
     const contactsLink = getByRole('link', { name: /contacts/i });
     const cartLink = getByRole('link', { name: /cart/i });
 
-    expect(navbar).toBeInTheDocument();
     expect(rootLink).toBeInTheDocument();
     expect(catalogLink).toBeInTheDocument();
     expect(deliveryLink).toBeInTheDocument();

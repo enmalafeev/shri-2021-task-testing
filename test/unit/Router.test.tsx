@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Router } from 'react-router';
 
 import { Provider } from 'react-redux';
@@ -29,12 +29,13 @@ describe('Проверка работы роутера', () => {
       </Router>
     );
     
-    const { getByTestId, getByRole } = render(application);
-    userEvent.click(getByTestId('link-catalog'));
+    const { getByRole } = render(application);
+    userEvent.click(getByRole('link', { name: /catalog/i }));
     const header = getByRole('heading', { name: /catalog/i });
 
     expect(header).toBeInTheDocument();
-  })
+  });
+
   it('Работает переход на страницу Delivery', () => {
     const history = createMemoryHistory({
       initialEntries: ['/hw/store/delivery'],
@@ -54,12 +55,13 @@ describe('Проверка работы роутера', () => {
       </Router>
     );
     
-    const { getByTestId, getByRole } = render(application);
-    userEvent.click(getByTestId('link-delivery'));
+    const { getByRole } = render(application);
+    userEvent.click(getByRole('link', { name: /delivery/i }));
     const header = getByRole('heading', { name: /delivery/i });
 
     expect(header).toBeInTheDocument();
-  })
+  });
+
   it('Работает переход на страницу Contacts', () => {
     const history = createMemoryHistory({
       initialEntries: ['/hw/store/contacts'],
@@ -79,12 +81,13 @@ describe('Проверка работы роутера', () => {
       </Router>
     );
     
-    const { getByTestId, getByRole } = render(application);
-    userEvent.click(getByTestId('link-contacts'));
+    const { getByRole } = render(application);
+    userEvent.click(getByRole('link', { name: /contacts/i }));
     const header = getByRole('heading', { name: /contacts/i });
 
     expect(header).toBeInTheDocument();
-  })
+  });
+
   it('Работает переход на страницу Cart', () => {
     const history = createMemoryHistory({
       initialEntries: ['/hw/store/cart'],
@@ -104,12 +107,12 @@ describe('Проверка работы роутера', () => {
       </Router>
     );
     
-    const { getByTestId, getByRole } = render(application);
-    userEvent.click(getByTestId('link-cart'));
+    const { getByRole } = render(application);
+    userEvent.click(getByRole('link', { name: /cart/i }));
     const header = getByRole('heading', { name: /shopping cart/i })
 
     expect(header).toBeInTheDocument();
-  })
+  });
 })
  
  
