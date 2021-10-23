@@ -36,18 +36,18 @@ describe('Проверка Каталога товаров', () => {
         </Router>
       </Provider>
     );
-    await render(catalog);
+    const { getAllByRole, getAllByTestId, getByText } = await render(catalog);
   
-    const links = screen.getAllByRole('link', { name: /details/i });
+    const links = getAllByRole('link', { name: /details/i });
   
-    expect(screen.getAllByTestId('1').length).not.toBe(0);
-    expect(screen.getAllByTestId('2').length).not.toBe(0);
+    expect(getAllByTestId('1').length).not.toBe(0);
+    expect(getAllByTestId('2').length).not.toBe(0);
   
-    expect(screen.getByText('iphone')).toBeInTheDocument();
-    expect(screen.getByText('notebook')).toBeInTheDocument();
+    expect(getByText('iphone')).toBeInTheDocument();
+    expect(getByText('notebook')).toBeInTheDocument();
   
-    expect(screen.getByText(/\$150/i)).toBeInTheDocument();
-    expect(screen.getByText(/\$300/i)).toBeInTheDocument();
+    expect(getByText(/\$150/i)).toBeInTheDocument();
+    expect(getByText(/\$300/i)).toBeInTheDocument();
   
     expect(links.length).toBe(2);
   });
@@ -60,15 +60,14 @@ describe('Проверка Каталога товаров', () => {
         </Router>
       </Provider>
     )
-    await render(app);
+    const { getByRole, getAllByRole } = await render(app);
 
-    events.click(screen.getByRole('link', { name: /catalog/i }));
+    events.click(getByRole('link', { name: /catalog/i }));
 
-    const links = screen.getAllByRole('link', { name: /details/i });
+    const links = getAllByRole('link', { name: /details/i });
     events.click(links[0]);
 
-    expect(screen.getByRole('button', { name: /add to cart/i })).toBeInTheDocument();
-    screen.logTestingPlaygroundURL();
+    expect(getByRole('button', { name: /add to cart/i })).toBeInTheDocument();
   })
 
 })
