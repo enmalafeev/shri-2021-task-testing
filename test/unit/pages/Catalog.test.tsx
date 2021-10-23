@@ -68,6 +68,7 @@ describe('Проверка Каталога товаров', () => {
     events.click(links[0]);
 
     expect(screen.getByRole('button', { name: /add to cart/i })).toBeInTheDocument();
+    screen.logTestingPlaygroundURL();
   })
 
 })
