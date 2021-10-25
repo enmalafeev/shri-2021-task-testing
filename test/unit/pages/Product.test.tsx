@@ -64,7 +64,7 @@ describe('Проверка карточки товара', () => {
     waitFor(() => expect(getByText('Item in cart')).toBeInTheDocument());
   });
 
-  it('При повторном добавлении товара в корзину увеличивается его количество', () => {
+  it('При повторном добавлении товара в корзину увеличивается его количество', async () => {
     const product = (
       <Provider store={store}>
         <BrowserRouter>
@@ -73,8 +73,17 @@ describe('Проверка карточки товара', () => {
       </Provider>
     );
 
-    const { getByRole, getByText } = render(product);
+    let countCurProductInCart = cart.getState()?.[1]?.count;
 
-    
+    const { getByRole } = render(product);
+
+    const addToCartBtn = getByRole('button', { name: /add to cart/i });
+
+    await userEvent.click(addToCartBtn);
+
+    expect(countCurProductInCart).toEqual(1);
+    countCurProductInCart = cart.getState()?.[1]?.count;
+    await userEvent.click(addToCartBtn);
+    expect(countCurProductInCart).toEqual(2);
   });
 });
