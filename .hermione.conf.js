@@ -9,8 +9,9 @@ module.exports = {
       }
     }
   },
-  windowSize: {
-    width: 575,
-    height: 1000
+  plugins: {
+    'html-reporter/hermione': {
+      path: 'hermione-html-reporter'
+    }
   }
 }
