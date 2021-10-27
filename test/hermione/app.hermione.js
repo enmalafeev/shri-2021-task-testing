@@ -80,17 +80,23 @@ describe('Проверка верстки на мобилках', async function
     await this.browser.url('/hw/store/contacts');
     await this.browser.assertView('plain', '#root', {
       compositeImage: true,
-      allowViewportOverflow: true,
     });
   });
 
   it('Навигационное меню должно скрываться за "гамбургер"', async function () {
     await this.browser.setWindowSize(375, 812);
     const navigationToggler = await this.browser.$('.navbar-toggler');
-    const navigationMenu = await this.browser.$('.navbar-collapse');
-    
-    assert.isFalse(await navigationMenu.isDisplayed());
-    navigationToggler.click();
-    assert.isTrue(await navigationMenu.isDisplayed());
+
+    await navigationToggler.click();
+    await this.browser.pause(1000);
+    await this.browser.assertView("plain", ".navbar", {
+      compositeImage: true,
+    });
+
+    await navigationToggler.click();
+    await this.browser.pause(1000);
+    await this.browser.assertView("plain", ".navbar", {
+      compositeImage: true,
+    });
   });
 });
