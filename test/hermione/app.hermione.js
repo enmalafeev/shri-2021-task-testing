@@ -84,25 +84,6 @@ describe('Проверка верстки на мобилках', async function
     });
   });
 
-  it('Каталог - мобильная верстка', async function () {
-    await this.browser.setWindowSize(375, 812);
-    await this.browser.url('/hw/store/catalog');
-    await this.browser.assertView('plain', '#root', {
-      compositeImage: true,
-      allowViewportOverflow: true,
-      ignoreElements: ['.ProductItem-Name', '.ProductItem-Price'],
-    });
-  });
-
-  it('Доставка - мобильная верстка', async function () {
-    await this.browser.setWindowSize(375, 812);
-    await this.browser.url('/hw/store/delivery');
-    await this.browser.assertView('plain', '#root', {
-      compositeImage: true,
-      allowViewportOverflow: true,
-    });
-  });
-
   it('Навигационное меню должно скрываться за "гамбургер"', async function () {
     await this.browser.setWindowSize(375, 812);
     const navigationToggler = await this.browser.$('.navbar-toggler');
