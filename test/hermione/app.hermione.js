@@ -74,29 +74,4 @@ describe('Проверка верстки на мобилках', async function
       compositeImage: true,
     });
   });
-
-  it('Контакты - мобильная верстка', async function () {
-    await this.browser.setWindowSize(375, 812);
-    await this.browser.url('/hw/store/contacts');
-    await this.browser.assertView('plain', '#root', {
-      compositeImage: true,
-    });
-  });
-
-  it('Навигационное меню должно скрываться за "гамбургер"', async function () {
-    await this.browser.setWindowSize(375, 812);
-    const navigationToggler = await this.browser.$('.navbar-toggler');
-
-    await navigationToggler.click();
-    await this.browser.pause(1000);
-    await this.browser.assertView("plain", ".navbar", {
-      compositeImage: true,
-    });
-
-    await navigationToggler.click();
-    await this.browser.pause(1000);
-    await this.browser.assertView("plain", ".navbar", {
-      compositeImage: true,
-    });
-  });
 });
