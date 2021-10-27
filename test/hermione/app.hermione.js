@@ -34,11 +34,78 @@ describe('Проверка корзины товаров', async function() {
     await this.browser.$('.ProductItem-DetailsLink').click();
     await this.browser.$('.ProductDetails-AddToCart').click();
     await this.browser.url('/hw/store/cart');
-    await this.browser.url('/hw/store');
-    await this.browser.url('/hw/store/cart');
+    await this.browser.refresh();
     await this.browser.assertView('plain', '.Cart', {
         compositeImage: true,
     });
     await this.browser.$('.Cart-Clear').click();
   });
-})
+
+  it('Счетчик товаров в хедере отображает 1 товар', async function () {
+    await this.browser.url('/hw/store/catalog');
+    await this.browser.$('.ProductItem-DetailsLink').click();
+    await this.browser.$('.ProductDetails-AddToCart').click();
+    await this.browser.assertView('plain', '[href="/hw/store/cart"]', {
+      compositeImage: true,
+    });
+  });
+
+  it('Отображение разных товаров в корзине', async function () {
+    await this.browser.url('/hw/store/catalog');
+    await this.browser.$('.ProductItem-DetailsLink').click();
+    await this.browser.$('.ProductDetails-AddToCart').click();
+    await this.browser.$('.ProductDetails-AddToCart').click();
+    await this.browser.$('.ProductDetails-AddToCart').click();
+    await this.browser.$('.ProductDetails-AddToCart').click();
+
+    await this.browser.assertView('plain', '[href="/hw/store/cart"]', {
+      compositeImage: true,
+    });
+  });
+
+});
+
+describe('Проверка верстки на мобилках', async function() {
+  it('Главная - мобильная верстка', async function () {
+    await this.browser.setWindowSize(375, 812);
+    await this.browser.url('/hw/store');
+    await this.browser.assertView('plain', '#root', {
+      compositeImage: true,
+    });
+  });
+
+  it('Контакты - мобильная верстка', async function () {
+    await this.browser.setWindowSize(375, 812);
+    await this.browser.url('/hw/store/contacts');
+    await this.browser.assertView('plain', '#root', {
+      compositeImage: true,
+    });
+  });
+
+  it('Каталог - мобильная верстка', async function () {
+    await this.browser.setWindowSize(375, 812);
+    await this.browser.url('/hw/store/catalog');
+    await this.browser.assertView('plain', '#root', {
+      compositeImage: true,
+      ignoreElements: ['.ProductItem-Name', '.ProductItem-Price'],
+    });
+  });
+
+  it('Доставка - мобильная верстка', async function () {
+    await this.browser.setWindowSize(375, 812);
+    await this.browser.url('/hw/store/delivery');
+    await this.browser.assertView('plain', '#root', {
+      compositeImage: true,
+    });
+  });
+
+  it('Навигационное меню должно скрываться за "гамбургер"', async function () {
+    await this.browser.setWindowSize(375, 812);
+    const navigationToggler = await this.browser.$('.navbar-toggler');
+    const navigationMenu = await this.browser.$('.navbar-collapse');
+    
+    assert.isFalse(await navigationMenu.isDisplayed());
+    navigationToggler.click();
+    assert.isTrue(await navigationMenu.isDisplayed());
+  });
+});
