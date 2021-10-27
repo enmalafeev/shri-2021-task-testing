@@ -34,7 +34,8 @@ describe('Проверка корзины товаров', async function() {
     await this.browser.$('.ProductItem-DetailsLink').click();
     await this.browser.$('.ProductDetails-AddToCart').click();
     await this.browser.url('/hw/store/cart');
-    await this.browser.refresh();
+    await this.browser.url('/hw/store');
+    await this.browser.url('/hw/store/cart');
     await this.browser.assertView('plain', '.Cart', {
         compositeImage: true,
     });
