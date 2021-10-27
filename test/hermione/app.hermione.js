@@ -80,6 +80,7 @@ describe('Проверка верстки на мобилках', async function
     await this.browser.url('/hw/store/contacts');
     await this.browser.assertView('plain', '#root', {
       compositeImage: true,
+      allowViewportOverflow: true,
     });
   });
 
@@ -88,6 +89,7 @@ describe('Проверка верстки на мобилках', async function
     await this.browser.url('/hw/store/catalog');
     await this.browser.assertView('plain', '#root', {
       compositeImage: true,
+      allowViewportOverflow: true,
       ignoreElements: ['.ProductItem-Name', '.ProductItem-Price'],
     });
   });
@@ -97,6 +99,7 @@ describe('Проверка верстки на мобилках', async function
     await this.browser.url('/hw/store/delivery');
     await this.browser.assertView('plain', '#root', {
       compositeImage: true,
+      allowViewportOverflow: true,
     });
   });
 
