@@ -41,4 +41,36 @@
 //     });
 //     await this.browser.$('.Cart-Clear').click();
 //   });
-// })
+
+//   it('Счетчик товаров в хедере отображает 1 товар', async function () {
+//     await this.browser.url('/hw/store/catalog');
+//     await this.browser.$('.ProductItem-DetailsLink').click();
+//     await this.browser.$('.ProductDetails-AddToCart').click();
+//     await this.browser.assertView('plain', '[href="/hw/store/cart"]', {
+//       compositeImage: true,
+//     });
+//   });
+
+//   it('Отображение разных товаров в корзине', async function () {
+//     await this.browser.url('/hw/store/catalog');
+//     await this.browser.$('.ProductItem-DetailsLink').click();
+//     await this.browser.$('.ProductDetails-AddToCart').click();
+//     await this.browser.$('.ProductDetails-AddToCart').click();
+//     await this.browser.$('.ProductDetails-AddToCart').click();
+//     await this.browser.$('.ProductDetails-AddToCart').click();
+
+//     await this.browser.assertView('plain', '[href="/hw/store/cart"]', {
+//       compositeImage: true,
+//     });
+//   });
+// });
+
+// describe('Проверка верстки на мобилках', async function() {
+//   it('Главная - мобильная верстка', async function () {
+//     await this.browser.setWindowSize(375, 812);
+//     await this.browser.url('/hw/store');
+//     await this.browser.assertView('plain', '#root', {
+//       compositeImage: true,
+//     });
+//   });
+// });
